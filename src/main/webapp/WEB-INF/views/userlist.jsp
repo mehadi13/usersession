@@ -5,22 +5,26 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="css/bootstrap.min.css">
+<!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
 <title>Insert title here</title>
 
 </head>
 <body>
 <c:out value="${username}"/>
 	<table class="table">
-		<thead>
+		<thead class="thead-dark">
 			<tr>
 			<td>Id</td>
 				<td>Name</td>
 				<td>Email</td>
 				<td>Password</td>
 				<td>Gender</td>
-				<td colspan="2">Action</td>
+				<td>Role</td>
+				<td colspan="2" align="center">Action</td>
 			</tr>
+			</thead>
 			<c:forEach items="${users}" var="user">
 				<tr>
 				<td>${user.id}</td>
@@ -28,11 +32,12 @@
 					<td>${user.email}</td>
 					<td>${user.password}</td>
 					<td>${user.gender}</td>
-					<td><a href="users/update/${user}">Edit</a></td>
-					<td><a href="users/delete/${user.id}">Delete</a></td>
+					<td>${user.role}</td>
+					<td><a href="users/update/${user.id}" class="btn btn-warning">Edit</a></td>
+					<td><a href="users/delete/${user.id}" class="btn btn-danger">Delete</a></td>
 				</tr>
 			</c:forEach>
-		</thead>
+		
 	</table>
 </body>
 </html>

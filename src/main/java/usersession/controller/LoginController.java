@@ -1,5 +1,8 @@
 package usersession.controller;
 
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,11 +28,7 @@ public class LoginController {
 		return "login";
 	}
 
-	@GetMapping("/name")
-	public String getName() {
-		return "test";
-	}
-
+	
 	@PostMapping("/dologin")
 	public String doLogin(@ModelAttribute("user") User user, Model model) {
 		// Implement your business logic
@@ -45,5 +44,12 @@ public class LoginController {
 		model.addAttribute("role", validUser.getRole());
 		System.out.println("asdfasdf");
 		return "success";
+	}
+	
+	@GetMapping("/logout")
+	public String showLoggedOut(HttpSession session) {
+		session.invalidate();
+	
+		return "redirect:/login";
 	}
 }

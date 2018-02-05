@@ -43,6 +43,7 @@ public class UserDAOImpl implements UserDAO {
 				user.setId(rs.getInt("id"));
 				user.setName(rs.getString("name"));
 				user.setAddress(rs.getString("address"));
+				user.setPassword(rs.getString("password"));
 				user.setEmail(rs.getString("email"));
 				user.setGender(rs.getString("gender"));
 				user.setRole(rs.getString("role"));
@@ -53,12 +54,13 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	public void update(User user) {
-		String queryUser = "update User set name=?, email=? , password = ? where id=?";
+		String queryUser = "update User set name=?, email=? , password = ?, address=?,gender=?, role=?  where id=?";
 
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		System.out.println("Id:"+user.getId());
 
 		int out = jdbcTemplate.update(queryUser,
-				new Object[] { user.getName(), user.getEmail(), user.getPassword(), user.getId() });
+				new Object[] { user.getName(), user.getEmail(), user.getPassword(),user.getAddress(),user.getGender(),user.getRole(), user.getId() });
 
 		if (out != 0) {
 			System.out.println("Employee updated with id=" + user.getId());
@@ -91,6 +93,7 @@ public class UserDAOImpl implements UserDAO {
 			user.setEmail(String.valueOf(userRow.get("email")));
 			user.setPassword(String.valueOf(userRow.get("password")));
 			user.setGender(String.valueOf(userRow.get("gender")));
+			user.setRole(String.valueOf(userRow.get("role")));
 			userList.add(user);
 		}
 		return userList;

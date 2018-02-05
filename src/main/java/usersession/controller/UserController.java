@@ -82,18 +82,27 @@ public class UserController {
 	}
 	
 	//update
-	@GetMapping("/users/update/{user}")
-	public String addForm(@PathVariable User user,Model model) {
-		model.addAttribute("user",user);
+	@GetMapping("/users/update/{id}")
+	public String updateForm(@PathVariable int id,Model model) {
+		model.addAttribute("user",userDAO.getById(id));
 		return "update";
 	}
-	@PostMapping("/users/{id}")
-	public String updateUser(@ModelAttribute("user") @Valid User user,@PathVariable int id, BindingResult result, Model model) {
+	@PostMapping("/users/update")
+	public String updateUser(@ModelAttribute("user") @Valid User user, BindingResult result, Model model,@SessionAttribute("role")String role) {
+		System.out.println("Update form");
+		System.out.println(user.getName()+"  "+user.getEmail()+"  "+user.getAddress());
+		System.out.println(user.getGender()+"  "+user.getPassword()+"  "+user.getRole()+"  "+user.getId());
 		if (result.hasErrors()) {
+			System.out.println("error");
 			return "update";
 		}
+		
 		userDAO.update(user);
-		return "userlist";
+		if(role.equals(ADMIN_ROLE)) {
+		return "redirect:/users";
+		}else{
+			return "redirect:/userdetails";
+		}
 	}
 	
 	

@@ -5,6 +5,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
 <title>BJIT</title>
 <style type="text/css">
 .error {
@@ -15,8 +18,8 @@
 <body>
 	<h2>User Input From</h2>
 	<hr />
-	<form:form action="user" method="post" modelAttribute="user">
-		<table>
+	<form:form class="form-control" action="user" method="post" modelAttribute="user">
+		<table class="tabel">
 		<tr>
 				<th>Name</th>
 				<td><form:input path="name" /> <form:errors path="name"
@@ -46,8 +49,8 @@
 			
 			<tr>
 				<th>Role</th>
-				<td><form:radiobutton path="role" value="Admin" label="Admin" />
-					<form:radiobutton path="role" value="General" label="General" /> <form:errors
+				<td><form:radiobutton path="role" value="admin" label="admin" />
+					<form:radiobutton path="role" value="general" label="general" /> <form:errors
 						path="role" cssClass="error" /></td>
 			</tr>
 			

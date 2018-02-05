@@ -6,12 +6,19 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="css/bootstrap.min.css">
+<!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
 <title>BJIT</title>
 </head>
 <body>
-	<h1>User Login</h1>
+	
+	
 	<div class="container">
+	<div class="row">
+	<h1>Login</h1>
+	</div>
+	<div class="row">
 	<form:form action="dologin" method="post" modelAttribute="user">
 		<table>
 			<tr>
@@ -27,6 +34,7 @@
 			</tr>
 		</table>
 	</form:form>
+	</div>
 </div>
 	<span style="color: red;">${message}</span>
 </body>
